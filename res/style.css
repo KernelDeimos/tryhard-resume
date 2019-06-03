@@ -1,0 +1,280 @@
+@charset "UTF-8";
+UL {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  padding-left: 15pt;
+}
+UL LI {
+  margin-left: 0;
+  padding-left: 0;
+  text-indent: -10pt;
+  line-height: 14pt;
+  font-size: 12pt;
+}
+UL LI:before {
+  text-indent: -10pt;
+  content: " - ";
+  font-size: 18pt;
+  font-weight: bold;
+  text-align: top;
+}
+
+@media not print {
+  BODY .page {
+    border-bottom: 2px double red;
+  }
+}
+BODY .page {
+  width: 8.5in;
+  height: 11in;
+}
+BODY .ed-header {
+  height: 110px;
+  border-bottom: 4px solid black;
+  padding: 0 15pt;
+}
+BODY .ed-header .left, BODY .ed-header .right {
+  display: inline-block;
+}
+BODY .ed-header .left *, BODY .ed-header .right * {
+  font-family: Helvetica;
+}
+BODY .ed-header .left .name {
+  font-size: 40pt;
+}
+BODY .ed-header .left .title {
+  font-size: 21pt;
+  color: #555;
+}
+BODY .ed-header .right {
+  float: right;
+}
+BODY .ed-header .right .deets {
+  display: inline-block;
+  vertical-align: top;
+  text-align: right;
+  line-height: 26pt;
+}
+BODY .ed-qr {
+  display: inline-block;
+}
+BODY .ed-qr IMG {
+  height: 80pt;
+}
+BODY .ed-contact {
+  font-family: Helvetica;
+  background-color: #DDD;
+  padding: 5pt 15pt;
+  text-align: center;
+}
+BODY .ed-contact .bullet {
+  padding: 15pt;
+}
+BODY .ed-contact .bullet::after {
+  content: "•";
+}
+BODY .sec-abstract {
+  padding: 0 15pt;
+  margin-top: 15pt;
+}
+BODY .sec-abstract .title {
+  display: block;
+  font-family: Helvetica;
+  font-size: 20pt;
+  border-bottom: 2pt solid black;
+}
+BODY .sec-abstract .body {
+  padding-top: 10pt;
+}
+BODY .sec-abstract .item {
+  padding-top: 10pt;
+}
+BODY .sec-abstract .body {
+  text-align: justify;
+  padding-left: 2in;
+}
+BODY .sec-education {
+  padding: 0 15pt;
+  margin-top: 15pt;
+  font-family: times;
+}
+BODY .sec-education .title {
+  display: block;
+  font-family: Helvetica;
+  font-size: 20pt;
+  border-bottom: 2pt solid black;
+}
+BODY .sec-education .body {
+  padding-top: 10pt;
+}
+BODY .sec-education .item {
+  padding-top: 10pt;
+}
+BODY .sec-education .body {
+  padding-left: 2in;
+}
+BODY .sec-education .heading {
+  height: 18pt;
+  font-family: Helvetica;
+  font-size: 14pt;
+}
+BODY .sec-education .heading .date {
+  float: right;
+}
+BODY .sec-education ul li span {
+  display: inline-block;
+  min-width: 1in;
+  padding-left: 10pt;
+}
+BODY .sec-projects {
+  padding: 0 15pt;
+  margin-top: 15pt;
+  margin-top: 15pt;
+}
+BODY .sec-projects .title {
+  display: block;
+  font-family: Helvetica;
+  font-size: 20pt;
+  border-bottom: 2pt solid black;
+}
+BODY .sec-projects .body {
+  padding-top: 10pt;
+}
+BODY .sec-projects .item {
+  padding-top: 10pt;
+}
+BODY .sec-projects .item {
+  margin-bottom: 10pt;
+  font-family: times;
+}
+BODY .sec-projects .item .heading {
+  height: 18pt;
+  font-family: Helvetica;
+  font-size: 14pt;
+  margin-bottom: 5pt;
+}
+BODY .sec-projects .item .heading .url {
+  float: right;
+}
+BODY .sec-projects .item .url {
+  text-decoration: underline;
+}
+BODY .sec-tags {
+  padding: 0 15pt;
+  margin-top: 15pt;
+  margin-top: 15pt;
+}
+BODY .sec-tags .title {
+  display: block;
+  font-family: Helvetica;
+  font-size: 20pt;
+  border-bottom: 2pt solid black;
+}
+BODY .sec-tags .body {
+  padding-top: 10pt;
+}
+BODY .sec-tags .item {
+  padding-top: 10pt;
+}
+BODY .sec-tags .tag {
+  display: inline-block;
+  font-size: 14pt;
+  border: 1pt solid #CCC;
+  padding: 5pt;
+  margin-bottom: 5pt;
+}
+BODY .sec-list {
+  padding: 0 15pt;
+  margin-top: 15pt;
+  margin-top: 15pt;
+}
+BODY .sec-list .title {
+  display: block;
+  font-family: Helvetica;
+  font-size: 20pt;
+  border-bottom: 2pt solid black;
+}
+BODY .sec-list .body {
+  padding-top: 10pt;
+}
+BODY .sec-list .item {
+  padding-top: 10pt;
+}
+BODY .sec-list li {
+  font-size: 14pt;
+  line-height: 18pt;
+  margin-bottom: 5pt;
+}
+BODY .sec-experience {
+  padding: 0 15pt;
+  margin-top: 15pt;
+}
+BODY .sec-experience .title {
+  display: block;
+  font-family: Helvetica;
+  font-size: 20pt;
+  border-bottom: 2pt solid black;
+}
+BODY .sec-experience .body {
+  padding-top: 10pt;
+}
+BODY .sec-experience .item {
+  padding-top: 10pt;
+}
+BODY .sec-experience .body > div {
+  position: relative;
+}
+BODY .sec-experience .tags {
+  vertical-align: top;
+  padding-top: 10pt;
+  display: inline-block;
+  height: 100%;
+  width: calc(2in - 15pt);
+  margin-right: 15pt;
+}
+BODY .sec-experience .tags .tag {
+  display: inline-block;
+  font-size: 10pt;
+  line-height: 12pt;
+  padding: 0 2pt;
+  border: 1pt solid #CCC;
+  margin-right: 2pt;
+  margin-bottom: 2pt;
+}
+BODY .sec-experience .item {
+  margin-bottom: 10pt;
+  width: calc(100% - 2in);
+  display: inline-block;
+  height: 100%;
+  font-family: times;
+}
+BODY .sec-experience .item .heading {
+  height: 18pt;
+  font-family: Helvetica;
+}
+BODY .sec-experience .item .position {
+  display: inline-block;
+  float: left;
+  font-size: 14pt;
+}
+BODY .sec-experience .item .company-time {
+  display: inline-block;
+  float: right;
+  vertical-align: top;
+  text-align: right;
+}
+BODY .sec-experience .item .company-time .company {
+  text-decoration: underline;
+}
+BODY .sec-experience .item .company-time .time::before {
+  font-weight: bold;
+  margin: 5pt;
+  color: #333;
+  content: " // ";
+}
+BODY .sec-experience .item .desc {
+  text-align: justify;
+}
+
+/*# sourceMappingURL=style.css.map */
