@@ -1,0 +1,133 @@
+# vim: set foldlevel=10:
+abstract: |
+  With a decade of programming experience behind me, I've completed
+  my Bachelor of Engineering at UOIT and am looking to continue
+  my software career in an impactful and evolving environment.
+education:
+  - name: "University of Ontario: Institute of Technology"
+    program: Software Engineering
+    degree: Bachelor of Engineering
+    date: June 2019
+    gpa: 3.3
+experience:
+  - position: Freelance Developer
+    company: Self-Employed
+    time: 'May 2014 - May 2017'
+    desc:
+      - Built first iteration of Velocity E-Signature
+        `velocityesignature.com`
+    tech: ['php','javascript','mysql']
+  - position: Backend Developer
+    company: Investabit
+    time: 'May 2017 - July 2018'
+    tech: ['docker','jenkins','rabbitmq','gin-gonic','bitcoin']
+    lang: ['golang','python']
+    desc:
+      - Developed execution engine for cryptocurrency trading
+        using Golang and RabbitMQ.
+      - Automated collection and processing of data from
+        a large number of cryptocurrency exchanges and coin
+        listing websites.
+      - Developed a backtesting server to mimic an
+        exchange with simulated faults.
+  - company: Rosewood Media Inc.
+    position: CTO/Developer
+    time: 'July 2017 - Present'
+    tech: ['docker','django','node-js']
+    lang: ['golang','python','es6','php']
+    desc:
+      - Developed backend framework using Golang.
+      - Managed development of projects using Node.js and PHP.
+  - company: UOIT
+    time: 2017 - 2019 ; fall and winter terms
+    position: Teaching Assistant
+    tech: ['C','Linux','OpenMP']
+    desc:
+      - TA for Systems Programming and Operating Systems courses.
+      - Developed tutorial material for Systems Programming course.
+      - Ran tutorials for Systems Programming and Operating Systems.
+      - Ran labs for Operating Systems.
+  - company: UOIT
+    time: 2018 - 2019 ; winter term
+    position: Research Assistant
+    tech: ['Automotive Linux (AGL)', 'C', 'python', 'golang']
+    desc:
+      - Developed tools for automated testing in Automotive Linux.
+      - Built a small UAV for obstacle avoidance research.
+projects:
+  - name: Boi-lang
+    desc: |
+      Boi-lang is an esoteric interpreter written in Golang.
+      The parsing was written by hand rather than using a parser generator.
+    url: github.com/KernelDeimos/boi-lang
+    tools: ['golang']
+  - name: FinalPHP
+    url: github.com/KernelDeimos/FinalPHP
+    desc: |
+      Years ago I had this strange habit of building
+      PHP frameworks. FinalPHP was the result of using what I
+      had learned to build an unopinionated microframework that
+      could be used in production. It features a concept I
+      called `sandwichware`, which is a stack-efficient
+      middleware (i.e. based on hooks instead of callbacks).
+    tools: ['aura/router', 'symfony/yaml', 'PHP']
+  - name: POF-Scraper
+    desc: |
+      POF-Scraper is a Google Chrome extension which crawls
+      profiles on the dating website pof.com, giving each
+      profile a score based on a logorithmic keyword counter.
+    url: github.com/KernelDeimos/POF-scraper
+    tools: ['coffeescript', 'chrome']
+  - name: 2D Stickfigure Shooter
+    desc: |
+      Using HTML5 canvas and the Matter.js physics engine
+      I built the engine for a multiplayer stickfigure shooter game.
+      Unfortunately this is how I learned that CoffeeScript is much
+      easier to write than it is to read, so I abandoned this project and put it under the MIT license.
+    url: github.com/KernelDeimos/stickengine-mp
+    tools: ['coffeescript', 'node-js', 'html5/canvas', 'matter-js']
+  - name: This Resumé
+    desc: |
+      This resumé was built using web technologies. I also used a
+      program I wrote in Golang to automatically compile .sass files
+      and generate my resume from a template and yaml file.
+    url: github.com/KernelDeimos/tryhard-resume
+
+tagsections:
+  - title: 'Familiar Languages'
+    tags: [
+      'Golang','Python','C','ES6','PHP',
+      'Perl','Java','Clojure','Lua',
+      'CoffeeScript'
+      ]
+  - title: 'Familiar Technologies'
+    tags: [
+      'Docker','RabbitMQ','Redis','Jenkins',
+      'JSON','REST','React','React Native',
+      'OpenMP', 'Sass', 'Pug', 'Matter.js',
+      'HTML5 Canvas','three.js','Glisp',
+      'gin-gonic'
+      ]
+listsections:
+  - title: Other Skills
+    items:
+      - topic: Great Debugging Skills
+        text: |
+          Referencing stack pointers, callback
+          side-effects, buggy mailer scripts, PHP;
+          these name just a few
+          sources of faults I've been privilaged to
+          solve.
+      - topic: Good Automation Habits
+        text: |
+          I often try to automate as much as I can and
+          use the DRY principle to guide me. I've also
+          learned the hard way that for some tasks
+          automation can be a time sink as well.
+      - topic: Willing to try New Technologies
+        text: |
+          The AI computer on board this ship gives me
+          a cookie every time I try a new technology.
+          You can use this to your advantage.
+
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html><head><title>Eric Dubé</title>
+<link rel="stylesheet" href="res/style.css" />
+<meta charset=utf-8>
+</head><body><div class="page">
+<div class="ed-header">
+	<div class="left">
+		<div class="name">Eric Dubé</div>
+		<div class="title">Software Engineer</div>
+	</div>
+	<div class="right">
+		<div class="deets">
+			ericdube.com<br>
+			github.com/KernelDeimos<br>
+			linkedin.com/in/ericalexdube
+		</div>
+		<div class="ed-qr">
+			<img src="res/ericdube.com.svg" />
+		</div>
+	</div>
+</div>
+
+<div class="sec-abstract">
+	<div class="title">Abstract</div>
+	<div class="body">{{.abstract}}</div>
+</div>
+
+<div class="sec-education">
+	<div class="title">Education</div>
+	<div class="body">
+		{{range .education}}
+			<div class="heading">
+				<span class="name">{{.degree}}</span>
+				<span class="date">Graduated {{.date}}</span>
+			</div>
+			<ul>
+				<li><span>Institution: </span><b>{{.name}}</b></li>
+				<li><span>Program: </span><b>{{.program}}</b> (GPA: {{.gpa}})</li>
+			</ul>
+		{{end}}
+	</div>
+</div>
+
+<div class="sec-experience">
+	<div class="title">Experience</div>
+	<div class="body">
+		{{range .experience}}
+		<div>
+			<div class="tags">
+				{{range .tech}}<div class="tag">{{.}}</div>{{end}}{{range .lang}}<div class="tag">{{.}}</div>{{end}}
+			</div><!--
+			--><div class="item">
+				<div class="heading">
+					<span class="position">{{.position}}</span>
+					<span class="company-time">
+						<span class="company">{{.company}}</span>
+						<span class="time">{{.time}}</span>
+					</span>
+				</div>
+				<ul class="desc">
+					{{range .desc}}
+					<li>{{.}}</li>
+					{{end}}
+				</ul>
+			</div>
+		</div>
+		{{end}}
+	</div>
+</div>
+
+</div>
+
+
+
+<!-- PAGE 2 -->
+<div class="page">
+
+<div class="sec-projects">
+	<div class="title">Personal Projects</div>
+	<div class="body">
+		{{range .projects}}
+		<div class="item">
+			<div class="heading">
+				<span class="name">{{.name}}</span>
+				<span class="url">{{.url}}</span>
+			</div>
+			<span class="desc">{{.desc}}</span>
+		</div>
+		{{end}}
+	</div>
+</div>
+
+{{range .tagsections}}
+<div class="sec-tags">
+	<div class="title">{{.title}}</div>
+	<div class="body">
+		{{range .tags}}
+		<div class="tag">{{.}}</div>
+		{{end}}
+	</div>
+</div>
+{{end}}
+
+{{range .listsections}}
+<div class="sec-list">
+	<div class="title">{{.title}}</div>
+	<div class="body">
+		<ul>
+			{{range .items}}
+			<li><b>{{.topic}}</b> - {{.text}}</li>
+			{{end}}
+		</ul>
+	</div>
+</div>
+{{end}}
+
+</div>
+
+</body></html>
+<!-- vim: ts=2 sw=2:
+-->

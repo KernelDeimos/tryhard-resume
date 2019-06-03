@@ -1,0 +1,8 @@
+# Eric's Automation Config
+style.sass:
+  - exec sass style.sass:res/style.css
+resume.html:
+  - gotmpl resume.html data.yaml index.html
+data.yaml:
+  - gotmpl resume.html data.yaml index.html
+

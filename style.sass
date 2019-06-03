@@ -1,0 +1,188 @@
+$font-sans-fam: Helvetica
+
+// NB: This stylesheet is not properly factored yet.
+//     i.e. some redundant styles are used where
+//          mixins could be used instead.
+
+@mixin section
+  padding: 0 15pt
+  margin-top: 15pt
+  .title
+    display: block
+    font-family: $font-sans-fam
+    font-size: 20pt
+    border-bottom: 2pt solid black
+  .body
+    padding-top: 10pt
+
+  .item
+    padding-top: 10pt
+
+UL
+  padding: 0
+  margin: 0
+  list-style: none
+  padding-left: 15pt
+  LI
+    margin-left: 0
+    padding-left: 0
+    text-indent: -10pt
+    line-height: 14pt
+    font-size: 12pt
+  LI:before
+    text-indent: -10pt
+    content: " - "
+    font-size: 18pt
+    font-weight: bold
+    text-align: top
+
+@media not print
+  BODY .page
+    border-bottom: 2px double red
+
+BODY
+  .page
+    width: 8.5in
+    height: 11in
+
+  .ed-header
+    height: 110px
+    border-bottom: 4px solid black
+    padding: 0 15pt
+
+    .left, .right
+      display: inline-block
+      *
+        font-family: $font-sans-fam
+
+    .left
+      .name
+        font-size: 40pt
+      .title
+        font-size: 21pt
+        color: #555
+
+    .right
+      float: right
+      .deets
+        display: inline-block
+        vertical-align: top
+        text-align: right
+        line-height: 26pt
+  .ed-qr
+    display: inline-block
+    IMG
+      height: 80pt
+  .ed-contact
+    font-family: $font-sans-fam
+    background-color: #DDD
+    padding: 5pt 15pt
+    text-align: center
+    .bullet
+      padding: 15pt
+      &::after
+        content: "•"
+
+  .sec-abstract
+    @include section
+    .body
+      text-align: justify
+      padding-left: 2in
+
+  .sec-education
+    @include section
+    .body
+      padding-left: 2in
+
+    font-family: times
+    .heading
+      height: 18pt
+      font-family: $font-sans-fam
+      font-size: 14pt
+      .date
+        float: right
+    ul li span
+      display: inline-block
+      min-width: 1in
+      padding-left: 10pt
+
+  .sec-projects
+    @include section
+    margin-top: 15pt
+    .item
+      .heading
+        height: 18pt
+        font-family: $font-sans-fam
+        font-size: 14pt
+        .url
+          float: right
+        margin-bottom: 5pt
+      margin-bottom: 10pt
+      font-family: times
+      .url
+        text-decoration: underline
+      .desc
+  .sec-tags
+    @include section
+    margin-top: 15pt
+    .tag
+      display: inline-block
+      font-size: 14pt
+      border: 1pt solid #CCC
+      padding: 5pt
+      margin-bottom: 5pt
+  .sec-list
+    @include section
+    margin-top: 15pt
+    li
+      font-size: 14pt
+      line-height: 18pt
+      margin-bottom: 5pt
+  .sec-experience
+    @include section
+    .body
+      // padding-left: 2in
+      & > div
+        position: relative
+    .tags
+      vertical-align: top
+      padding-top: 10pt
+      display: inline-block
+      height: 100%
+      width: calc(2in - 15pt)
+      margin-right: 15pt
+      .tag
+        display: inline-block
+        font-size: 10pt
+        line-height: 12pt
+        padding: 0 2pt
+        border: 1pt solid #CCC
+        margin-right: 2pt
+        margin-bottom: 2pt
+    .item
+      margin-bottom: 10pt
+      width: calc(100% - 2in)
+      display: inline-block
+      height: 100%
+      font-family: times
+      .heading
+        height: 18pt
+        font-family: $font-sans-fam
+      .position
+        display: inline-block
+        float: left
+        font-size: 14pt
+      .company-time
+        display: inline-block
+        float: right
+        vertical-align: top
+        text-align: right
+        .company
+          text-decoration: underline
+        .time::before
+          font-weight: bold
+          margin: 5pt
+          color: #333
+          content: " // "
+      .desc
+        text-align: justify
