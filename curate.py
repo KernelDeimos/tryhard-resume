@@ -54,17 +54,72 @@ def slugify(text: str) -> str:
     return text
 
 
-def run_claude(prompt: str) -> str:
-    result = subprocess.run(
-        ["claude", "-p", "--output-format", "text"],
-        input=prompt,
-        capture_output=True,
+BAR_WIDTH = 30
+
+
+def _render_progress(tokens: int, estimated: int) -> None:
+    if tokens <= estimated:
+        filled = int(BAR_WIDTH * tokens / estimated) if estimated else 0
+        bar = "█" * filled + "░" * (BAR_WIDTH - filled)
+        print(f"\r  [{bar}] {tokens}/{estimated} tokens", end="", file=sys.stderr, flush=True)
+    else:
+        # Exceeded original estimate; project a new one at 150% of current count
+        new_estimate = int(tokens * 1.5)
+        filled = int(BAR_WIDTH * tokens / new_estimate)
+        bar = "█" * filled + "░" * (BAR_WIDTH - filled)
+        print(
+            f"\r  [{bar}] {tokens} tokens  (exceeded est. {estimated}, ~{new_estimate} projected)",
+            end="", file=sys.stderr, flush=True,
+        )
+
+
+def run_claude(prompt: str, estimated_tokens: int = 0) -> str:
+    proc = subprocess.Popen(
+        ["claude", "-p", "--output-format", "stream-json", "--include-partial-messages", "--verbose"],
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
         text=True,
     )
-    if result.returncode != 0:
-        print("claude stderr:", result.stderr, file=sys.stderr)
-        raise RuntimeError(f"claude exited with code {result.returncode}")
-    return result.stdout.strip()
+    proc.stdin.write(prompt)
+    proc.stdin.close()
+
+    accumulated = ""
+    final_result = None
+
+    while True:
+        line = proc.stdout.readline()
+        if not line:
+            break
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+
+        if event.get("type") == "assistant":
+            content = event.get("message", {}).get("content", [])
+            text = "".join(b.get("text", "") for b in content if b.get("type") == "text")
+            if len(text) > len(accumulated):
+                accumulated = text
+                if estimated_tokens:
+                    _render_progress(len(accumulated) // 4, estimated_tokens)
+        elif event.get("type") == "result":
+            final_result = event.get("result", "")
+
+    proc.wait()
+
+    if estimated_tokens:
+        print(file=sys.stderr)  # newline after progress bar
+
+    if proc.returncode != 0:
+        stderr = proc.stderr.read()
+        print(f"claude stderr: {stderr}", file=sys.stderr)
+        raise RuntimeError(f"claude exited with code {proc.returncode}")
+
+    return (final_result or accumulated).strip()
 
 
 def extract_json(raw: str) -> dict:
@@ -104,8 +159,9 @@ def main():
         data_yaml=data_yaml,
     )
 
-    print("Generating curated resume with AI...", file=sys.stderr)
-    raw = run_claude(prompt)
+    estimated_tokens = len(data_yaml) // 4
+    print(f"Generating curated resume with AI... (est. {estimated_tokens} tokens)", file=sys.stderr)
+    raw = run_claude(prompt, estimated_tokens=estimated_tokens)
 
     parsed = extract_json(raw)
     company = slugify(parsed["company"])
