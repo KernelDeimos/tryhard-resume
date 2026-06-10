@@ -16,10 +16,10 @@ experience:
     time: 'Mar 2023 - Mar 2026'
     tech: ['java','javascript','foam','gradle']
     narrative: |
-      Puter is a small startup where I was the first employee hired and had to wear multiple hats
-      as the company grew to its second round of funding. I developed the current backend, triaged
-      bounty reports, maintained production servers, and developed a bespoke system for deploying to servers.
-      Ask me about the most interesting problem I solved here.
+      Puter is a small startup where I was the first employee hired and had to wear multiple hats.
+      I developed the current backend, triaged bounty reports, maintained production servers,
+      defended servers from attacks as they were happening, and integrated every single major AI API
+      there is for Puter's "AI driver" feature.
   - position: Software Developer - MSX Team
     company: Cisco
     time: 'Jul 2021 - Jan 2022'
@@ -101,26 +101,31 @@ projects:
     tools: ['coffeescript', 'node-js', 'html5/canvas', 'matter-js']
   - name: This Resumé
     desc: |
-      This resumé was built using web technologies. I also used a
-      program I wrote in Golang to automatically compile .sass files
-      and generate my resume from a template and yaml file.
+      Years ago I built this HTML5 resume with a watcher I made in Go
+      to compile SASS and apply YAML data. I submitted the same resume everywhere.
+      In the current landscape of AI vetting candidacy it is necessary to
+      match certain keywords and phrasing from a posting, so I've used AI
+      (Claude from CLI)
+      to create an AI-powered curated resume generator.
     url: github.com/KernelDeimos/tryhard-resume
 
 tagsections:
   - title: 'Familiar Languages'
     tags: [
-      'Golang','Python','C','ES6','Typescript','PHP',
+      'Golang','Python','C','Javascript','ES6','Typescript','PHP',
+      'Ruby',
       'Perl','Java','Lua',
-      'CoffeeScript','bash'
+      'CoffeeScript','bash',
       ]
   - title: 'Familiar Technologies'
     tags: [
-      'Dynamo','S3','RDS',
+      'Dynamo','S3','RDS', 'RoR',
       'Docker','RabbitMQ','Redis','Jenkins',
       'React','next.js','React Native',
       'OpenMP', 'Sass', 'Pug', 'Matter.js',
       'HTML5 Canvas','three.js','Glisp',
-      'gin-gonic','Otel/Jaeger'
+      'gin-gonic','Otel/Jaeger',
+      'Claude', 'ChatGPT', 'Gemini',
       ]
 listsections:
   - title: My Guiding Principles
