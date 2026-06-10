@@ -40,8 +40,8 @@ relevant experience, skills, and projects for this specific role. Guidelines:
 
 Output ONLY a JSON object with exactly these three string fields (no markdown, no extra text):
 {{
-  "company": "<company name, lowercase, underscores for spaces, no special chars>",
-  "position": "<job title, lowercase, underscores for spaces, no special chars>",
+  "company": "<company name, lowercase, hyphens for spaces, no special chars>",
+  "position": "<job title, lowercase, hyphens for spaces, no special chars>",
   "data_yaml": "<the complete curated data.yaml as a string>"
 }}
 """
@@ -129,6 +129,15 @@ def main():
     (out_dir / "data.yaml").write_text(curated_yaml)
     shutil.copy(ROOT / "resume.html", out_dir / "resume.html")
     shutil.copy(ROOT / "style.sass", out_dir / "style.sass")
+    shutil.copytree(ROOT / "res", out_dir / "res")
+
+    print("Compiling stylesheet...", file=sys.stderr)
+    result = subprocess.run(
+        ["npx", "sass", "style.sass:res/style.css"],
+        cwd=out_dir,
+    )
+    if result.returncode != 0:
+        sys.exit(f"sass exited with code {result.returncode}")
 
     print("Running onsave to generate index.html...", file=sys.stderr)
     onsave = Path.home() / "go" / "bin" / "onsave"
