@@ -21,11 +21,16 @@
 </div>
 
 <div class="sec-abstract">
-	<div class="title">Abstract</div>
-	<div class="body">{{.abstract}}</div>
+	<div class="title">About Me</div>
+	<div class="body">
+		<ul class="desc summary-desc">
+			{{range .abstract}}<li>{{.}}
+			{{end}}
+		</ul>
+	</div>
 </div>
 
-<div class="sec-education">
+<div class="sec-education lift-up">
 	<div class="title">Education</div>
 	<div class="body">
 		{{range .education}}
@@ -35,13 +40,13 @@
 			</div>
 			<ul>
 				<li><span>Institution: </span><b>{{.name}}</b></li>
-				<li><span>Program: </span><b>{{.program}}</b> (GPA: {{.gpa}})</li>
+				<li><span>Program: </span><b>{{.program}}</b></li>
 			</ul>
 		{{end}}
 	</div>
 </div>
 
-<div class="sec-experience">
+<div class="sec-experience lift-up">
 	<div class="title">Experience</div>
 	<div class="body">
 		{{range .experience}}
@@ -54,14 +59,18 @@
 					<span class="position">{{.position}}</span>
 					<span class="company-time">
 						<span class="company">{{.company}}</span>
-						<span class="time">{{.time}}</span>
+						<span class="time">{{.time}}{{if .time2}}<br />{{.time2}}{{end}}</span>
 					</span>
 				</div>
-				<ul class="desc">
+				{{if .narrative}}<div class="desc">
+					{{.narrative}}
+				</div>
+				{{else}}<ul class="desc">
 					{{range .desc}}
 					<li>{{.}}</li>
 					{{end}}
 				</ul>
+				{{end}}
 			</div>
 		</div>
 		{{end}}
@@ -69,6 +78,7 @@
 </div>
 
 </div>
+
 
 
 
@@ -107,7 +117,8 @@
 	<div class="body">
 		<ul>
 			{{range .items}}
-			<li><b>{{.topic}}</b> - {{.text}}</li>
+			<li><b>{{.topic}}</b>
+				{{.text}}</li>
 			{{end}}
 		</ul>
 	</div>

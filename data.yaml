@@ -1,9 +1,9 @@
 # vim: set foldlevel=10:
-abstract: |
+abstract:
   - Software has been a passion since a young age, when I self-taught backend web programming
   - I've worked in startups of various sizes and have seen a lot of development processes
   - I have taken the lead on multiple projects, and persued my own freelance endeavours
-  - I contribute to open-source software
+  - I contribute to and maintain open-source software
 education:
   - name: "University of Ontario: Institute of Technology"
     program: Software Engineering
@@ -11,34 +11,40 @@ education:
     date: June 2019
     gpa: 3.3
 experience:
-  - position: Freelance Developer
-    company: Self-Employed
-    time: 'May 2014 - May 2017'
+  - position: Chief Technology Officer
+    company: Puter
+    time: 'Mar 2023 - Mar 2026'
+    tech: ['java','javascript','foam','gradle']
+    narrative: |
+      Puter is a small startup where I was the first employee hired and had to wear multiple hats
+      as the company grew to its second round of funding. I developed the current backend, triaged
+      bounty reports, maintained production servers, and developed a bespoke system for deploying to servers.
+      Ask me about the most interesting problem I solved here.
+  - position: Software Developer - MSX Team
+    company: Cisco
+    time: 'Jul 2021 - Jan 2022'
+    tech: ['java','javascript','foam','gradle']
     desc:
-      - Built first iteration of Velocity E-Signature
-        `velocityesignature.com`
-    tech: ['php','javascript','mysql']
+      - Added features to a java web application to configure other Cisco products.
+      - Developed a code-generation tool to reduce time and tech debt for other developers.
+      - Took initiative to improve devex by developing a debugging tool for my peers.
+  - position: Software Developer
+    company: Nanopay
+    time: 'Jul 2019 - Jul 2021'
+    time2: 'Jan 2022 - Apr 2023'
+    tech: ['java','javascript','foam','gradle']
+    desc:
+      - Developed software using a niche framework called FOAM which was developed by the CTO
+      - Led development of a scenario-adaptive multi-tennant onboarding wizard
   - position: Backend Developer
     company: Investabit
     time: 'May 2017 - July 2018'
     tech: ['docker','jenkins','rabbitmq','gin-gonic','bitcoin']
     lang: ['golang','python']
     desc:
-      - Developed execution engine for cryptocurrency trading
-        using Golang and RabbitMQ.
-      - Automated collection and processing of data from
-        a large number of cryptocurrency exchanges and coin
-        listing websites.
-      - Developed a backtesting server to mimic an
-        exchange with simulated faults.
-  - company: Rosewood Media Inc.
-    position: CTO/Developer
-    time: 'July 2017 - Present'
-    tech: ['docker','django','node-js']
-    lang: ['golang','python','es6','php']
-    desc:
-      - Developed backend framework using Golang.
-      - Managed development of projects using Node.js and PHP.
+      - Developed execution engine for cryptocurrency trading using Golang and RabbitMQ.
+      - Automated collection and processing of data from a large number of cryptocurrency exchanges and coin listing websites.
+      - Developed a backtesting server to mimic an exchange with simulated faults.
   - company: UOIT
     time: 2017 - 2019 ; fall and winter terms
     position: Teaching Assistant
@@ -55,6 +61,13 @@ experience:
     desc:
       - Developed tools for automated testing in Automotive Linux.
       - Built a small UAV for obstacle avoidance research.
+  - position: Freelance Developer
+    company: Self-Employed
+    time: 'May 2014 - May 2017'
+    tech: ['php','javascript','mysql']
+    desc:
+      - Built first iteration of Velocity E-Signature. I believe Syngrafii owns this code now.
+      - "Built `bestebooks.ca` for a client, which is still in operation today."
 projects:
   - name: Boi-lang
     desc: |
@@ -82,9 +95,8 @@ projects:
   - name: 2D Stickfigure Shooter
     desc: |
       Using HTML5 canvas and the Matter.js physics engine
-      I built the engine for a multiplayer stickfigure shooter game.
-      Unfortunately this is how I learned that CoffeeScript is much
-      easier to write than it is to read, so I abandoned this project and put it under the MIT license.
+      I built the engine for a multiplayer stickfigure shooter game as a hobby project.
+      I released this as open source software under the MIT license.
     url: github.com/KernelDeimos/stickengine-mp
     tools: ['coffeescript', 'node-js', 'html5/canvas', 'matter-js']
   - name: This Resumé
@@ -97,38 +109,34 @@ projects:
 tagsections:
   - title: 'Familiar Languages'
     tags: [
-      'Golang','Python','C','ES6','PHP',
-      'Perl','Java','Clojure','Lua',
-      'CoffeeScript'
+      'Golang','Python','C','ES6','Typescript','PHP',
+      'Perl','Java','Lua',
+      'CoffeeScript','bash'
       ]
   - title: 'Familiar Technologies'
     tags: [
+      'Dynamo','S3','RDS',
       'Docker','RabbitMQ','Redis','Jenkins',
-      'JSON','REST','React','React Native',
+      'React','next.js','React Native',
       'OpenMP', 'Sass', 'Pug', 'Matter.js',
       'HTML5 Canvas','three.js','Glisp',
-      'gin-gonic'
+      'gin-gonic','Otel/Jaeger'
       ]
 listsections:
-  - title: Other Skills
+  - title: My Guiding Principles
     items:
-      - topic: Great Debugging Skills
+      - topic: Solve the root-cause, not the symptom
         text: |
-          Referencing stack pointers, callback
-          side-effects, buggy mailer scripts, PHP;
-          these name just a few
-          sources of faults I've been privilaged to
-          solve.
-      - topic: Good Automation Habits
+          Sometimes it's easy to apply a quick fix without understanding why a bug appeared.
+          Hotfixes are fine—but the underlying cause must always be uncovered,
+          documented, and addressed.
+      - topic: Automate only when it earns its keep
         text: |
-          I often try to automate as much as I can and
-          use the DRY principle to guide me. I've also
-          learned the hard way that for some tasks
-          automation can be a time sink as well.
-      - topic: Willing to try New Technologies
+          I've learned when automation amplifies
+          clarity and when it simply adds machinery.
+          Tools should serve people, not the other way around.
+      - topic: Data and DRY
         text: |
-          The AI computer on board this ship gives me
-          a cookie every time I try a new technology.
-          You can use this to your advantage.
-
-
+          One of the most significant problems I've seen in software
+          is bad software patterns that require what is known as
+          "shotgun surgery" to maintain. It's better for data to drive logic.
