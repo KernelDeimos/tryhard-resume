@@ -27,8 +27,8 @@ UL
     margin-left: 0
     padding-left: 0
     text-indent: -10pt
-    line-height: 14pt
-    font-size: 12pt
+    line-height: 13pt
+    font-size: 11pt
   LI:before
     text-indent: -10pt
     content: " - "
@@ -160,7 +160,7 @@ BODY
         margin-right: 2pt
         margin-bottom: 2pt
     .item
-      margin-bottom: 10pt
+      margin-bottom: 0pt
       width: calc(100% - 2in)
       display: inline-block
       height: 100%
@@ -185,4 +185,22 @@ BODY
           color: #333
           content: " // "
       .desc
-        text-align: justify
+        text-align: left
+        font-size: pt
+        line-height: 12pt
+        li
+          margin-left: -10pt
+          font-size: 10pt
+          line-height: 11.5pt
+      .footnote
+        font-size: 10px
+      .note
+        font-size: 12px;
+.desc.summary-desc li
+  font-size: 10pt;
+  line-height: 12px;
+.lift-up
+  margin-top: -15px !important;
+div.desc
+  font-size: 9pt
+  line-height: 10pt

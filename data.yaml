@@ -1,8 +1,9 @@
 # vim: set foldlevel=10:
 abstract: |
-  With a decade of programming experience behind me, I've completed
-  my Bachelor of Engineering at UOIT and am looking to continue
-  my software career in an impactful and evolving environment.
+  - Software has been a passion since a young age, when I self-taught backend web programming
+  - I've worked in startups of various sizes and have seen a lot of development processes
+  - I have taken the lead on multiple projects, and persued my own freelance endeavours
+  - I contribute to open-source software
 education:
   - name: "University of Ontario: Institute of Technology"
     program: Software Engineering

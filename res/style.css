@@ -9,8 +9,8 @@ UL LI {
   margin-left: 0;
   padding-left: 0;
   text-indent: -10pt;
-  line-height: 14pt;
-  font-size: 12pt;
+  line-height: 13pt;
+  font-size: 11pt;
 }
 UL LI:before {
   text-indent: -10pt;
@@ -97,7 +97,6 @@ BODY .sec-abstract .body {
 BODY .sec-education {
   padding: 0 15pt;
   margin-top: 15pt;
-  font-family: times;
 }
 BODY .sec-education .title {
   display: block;
@@ -113,6 +112,9 @@ BODY .sec-education .item {
 }
 BODY .sec-education .body {
   padding-left: 2in;
+}
+BODY .sec-education {
+  font-family: times;
 }
 BODY .sec-education .heading {
   height: 18pt;
@@ -130,7 +132,6 @@ BODY .sec-education ul li span {
 BODY .sec-projects {
   padding: 0 15pt;
   margin-top: 15pt;
-  margin-top: 15pt;
 }
 BODY .sec-projects .title {
   display: block;
@@ -144,25 +145,29 @@ BODY .sec-projects .body {
 BODY .sec-projects .item {
   padding-top: 10pt;
 }
-BODY .sec-projects .item {
-  margin-bottom: 10pt;
-  font-family: times;
+BODY .sec-projects {
+  margin-top: 15pt;
 }
 BODY .sec-projects .item .heading {
   height: 18pt;
   font-family: Helvetica;
   font-size: 14pt;
-  margin-bottom: 5pt;
 }
 BODY .sec-projects .item .heading .url {
   float: right;
+}
+BODY .sec-projects .item .heading {
+  margin-bottom: 5pt;
+}
+BODY .sec-projects .item {
+  margin-bottom: 10pt;
+  font-family: times;
 }
 BODY .sec-projects .item .url {
   text-decoration: underline;
 }
 BODY .sec-tags {
   padding: 0 15pt;
-  margin-top: 15pt;
   margin-top: 15pt;
 }
 BODY .sec-tags .title {
@@ -177,6 +182,9 @@ BODY .sec-tags .body {
 BODY .sec-tags .item {
   padding-top: 10pt;
 }
+BODY .sec-tags {
+  margin-top: 15pt;
+}
 BODY .sec-tags .tag {
   display: inline-block;
   font-size: 14pt;
@@ -186,7 +194,6 @@ BODY .sec-tags .tag {
 }
 BODY .sec-list {
   padding: 0 15pt;
-  margin-top: 15pt;
   margin-top: 15pt;
 }
 BODY .sec-list .title {
@@ -200,6 +207,9 @@ BODY .sec-list .body {
 }
 BODY .sec-list .item {
   padding-top: 10pt;
+}
+BODY .sec-list {
+  margin-top: 15pt;
 }
 BODY .sec-list li {
   font-size: 14pt;
@@ -230,7 +240,7 @@ BODY .sec-experience .tags {
   padding-top: 10pt;
   display: inline-block;
   height: 100%;
-  width: calc(2in - 15pt);
+  width: 1.7916666667in;
   margin-right: 15pt;
 }
 BODY .sec-experience .tags .tag {
@@ -243,7 +253,7 @@ BODY .sec-experience .tags .tag {
   margin-bottom: 2pt;
 }
 BODY .sec-experience .item {
-  margin-bottom: 10pt;
+  margin-bottom: 0pt;
   width: calc(100% - 2in);
   display: inline-block;
   height: 100%;
@@ -274,7 +284,34 @@ BODY .sec-experience .item .company-time .time::before {
   content: " // ";
 }
 BODY .sec-experience .item .desc {
-  text-align: justify;
+  text-align: left;
+  font-size: pt;
+  line-height: 12pt;
+}
+BODY .sec-experience .item .desc li {
+  margin-left: -10pt;
+  font-size: 10pt;
+  line-height: 11.5pt;
+}
+BODY .sec-experience .item .footnote {
+  font-size: 10px;
+}
+BODY .sec-experience .item .note {
+  font-size: 12px;
+}
+
+.desc.summary-desc li {
+  font-size: 10pt;
+  line-height: 12px;
+}
+
+.lift-up {
+  margin-top: -15px !important;
+}
+
+div.desc {
+  font-size: 9pt;
+  line-height: 10pt;
 }
 
 /*# sourceMappingURL=style.css.map */
