@@ -15,6 +15,8 @@ import re
 import shutil
 import subprocess
 import sys
+import threading
+import time
 from datetime import date
 from pathlib import Path
 
@@ -38,12 +40,25 @@ relevant experience, skills, and projects for this specific role. Guidelines:
 - Do not fabricate any information — only reorganize and emphasize what already exists
 - Preserve valid YAML structure identical to the input
 
-Output ONLY a JSON object with exactly these three string fields (no markdown, no extra text):
+Output ONLY a JSON object with exactly these four string fields (no markdown, no extra text):
 {{
   "company": "<company name, lowercase, hyphens for spaces, no special chars>",
   "position": "<job title, lowercase, hyphens for spaces, no special chars>",
-  "data_yaml": "<the complete curated data.yaml as a string>"
+  "data_yaml": "<the complete curated data.yaml as a string>",
+  "cover_letter_prompt": "<cover letter guidance — see below>"
 }}
+
+For "cover_letter_prompt", write a practical advisory note (plain text, use newlines for readability)
+addressed directly to the candidate. Cover at minimum:
+- What to include: specific accomplishments, technologies, or themes from the resume that directly
+  answer what the posting is asking for (be concrete, name the things)
+- Tone: what register suits this company and role (e.g. formal/informal, confident/collaborative,
+  technical depth vs. business outcomes)
+- Opening and closing: how to hook the reader and what call-to-action fits
+- What to avoid: red flags or mismatches that could undermine an otherwise strong application
+- Any other observations about this particular posting that a thoughtful advisor would flag
+  (e.g. a required qualification that is borderline, cultural signals in the job description, etc.)
+
 """
 
 
@@ -55,22 +70,20 @@ def slugify(text: str) -> str:
 
 
 BAR_WIDTH = 30
+SPINNER = "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
 
 
-def _render_progress(tokens: int, estimated: int) -> None:
+def _format_bar(tokens: int, estimated: int, elapsed: float) -> str:
+    t = f"{elapsed:.0f}s"
     if tokens <= estimated:
         filled = int(BAR_WIDTH * tokens / estimated) if estimated else 0
         bar = "█" * filled + "░" * (BAR_WIDTH - filled)
-        print(f"\r  [{bar}] {tokens}/{estimated} tokens", end="", file=sys.stderr, flush=True)
+        return f"  [{bar}] {tokens}/{estimated} tokens ({t})"
     else:
-        # Exceeded original estimate; project a new one at 150% of current count
         new_estimate = int(tokens * 1.5)
         filled = int(BAR_WIDTH * tokens / new_estimate)
         bar = "█" * filled + "░" * (BAR_WIDTH - filled)
-        print(
-            f"\r  [{bar}] {tokens} tokens  (exceeded est. {estimated}, ~{new_estimate} projected)",
-            end="", file=sys.stderr, flush=True,
-        )
+        return f"  [{bar}] {tokens} tokens, exceeded est. {estimated} (~{new_estimate} projected) ({t})"
 
 
 def run_claude(prompt: str, estimated_tokens: int = 0) -> str:
@@ -83,6 +96,27 @@ def run_claude(prompt: str, estimated_tokens: int = 0) -> str:
     )
     proc.stdin.write(prompt)
     proc.stdin.close()
+
+    # Shared state updated by reader thread, read by animator thread.
+    state = {"tokens": 0, "done": False}
+
+    def animate():
+        start = time.monotonic()
+        frame = 0
+        while not state["done"]:
+            elapsed = time.monotonic() - start
+            tokens = state["tokens"]
+            if estimated_tokens and tokens > 0:
+                line = _format_bar(tokens, estimated_tokens, elapsed)
+            else:
+                spin = SPINNER[frame % len(SPINNER)]
+                line = f"  {spin} {elapsed:.0f}s elapsed"
+            print(f"\r{line}", end="", file=sys.stderr, flush=True)
+            frame += 1
+            time.sleep(0.1)
+
+    anim = threading.Thread(target=animate, daemon=True)
+    anim.start()
 
     accumulated = ""
     final_result = None
@@ -104,15 +138,14 @@ def run_claude(prompt: str, estimated_tokens: int = 0) -> str:
             text = "".join(b.get("text", "") for b in content if b.get("type") == "text")
             if len(text) > len(accumulated):
                 accumulated = text
-                if estimated_tokens:
-                    _render_progress(len(accumulated) // 4, estimated_tokens)
+                state["tokens"] = len(accumulated) // 4
         elif event.get("type") == "result":
             final_result = event.get("result", "")
 
+    state["done"] = True
+    anim.join()
     proc.wait()
-
-    if estimated_tokens:
-        print(file=sys.stderr)  # newline after progress bar
+    print(file=sys.stderr)
 
     if proc.returncode != 0:
         stderr = proc.stderr.read()
@@ -167,6 +200,7 @@ def main():
     company = slugify(parsed["company"])
     position = slugify(parsed["position"])
     curated_yaml = parsed["data_yaml"]
+    cover_letter_prompt = parsed.get("cover_letter_prompt", "")
 
     today = date.today().strftime("%Y-%m-%d")
     dir_name = f"{today}_{company}_{position}"
@@ -183,6 +217,20 @@ def main():
     print(f"Created: {out_dir}", file=sys.stderr)
 
     (out_dir / "data.yaml").write_text(curated_yaml)
+    if cover_letter_prompt:
+        (out_dir / "cover_letter_prompt.txt").write_text(cover_letter_prompt + "\n")
+
+        cl_prompt = (
+            cover_letter_prompt
+            + "\n\n"
+            "Write the cover letter now. Avoid stylistic markers associated with AI-generated text: "
+            "no em-dashes, no emojis, no bullet points, no phrases like 'I am excited to' or "
+            "'I would be a great fit'. Write in plain, direct prose with natural sentence variety."
+        )
+        print("Writing cover letter with AI... (est. 500 tokens)", file=sys.stderr)
+        cover_letter = run_claude(cl_prompt, estimated_tokens=500)
+        (out_dir / "cover_letter.txt").write_text(cover_letter + "\n")
+
     shutil.copy(ROOT / "resume.html", out_dir / "resume.html")
     shutil.copy(ROOT / "style.sass", out_dir / "style.sass")
     shutil.copytree(ROOT / "res", out_dir / "res")
